@@ -7,53 +7,60 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pojo.Pet;
-import utils.utils;
+import utils.RequestUtils;
+
+import java.util.Map;
 
 public class GetPetByID {
-    private static Response response;
+    private static Response successResponse;
+    private static Response notFoundResponse;
+    private static Response badRequestResponse;
+    private static Response emptyIdResponse;
+
     protected static final String BASE_URI = AppConfig.getBaseUri();
-    private static final String PET_PATH = "/pet/{petId}";
-    private static final Integer PET_ID = 10;
-    private static Pet pet;
+    private static final String PATH = "/pet/{petId}";
+    private static final String PET_ID = "10";
+
+    private static Pet foundPet;
 
     @BeforeAll
     public static void beforeAll(){
-        // Make sure the request expects JSON
-        response = RestAssured
-                .given()
-                .baseUri(BASE_URI)
-                .pathParam("petId", PET_ID)
-                .accept("application/json")  // Add the Accept header to ensure JSON response
-                .when()
-                .get(PET_PATH)
-                .thenReturn();
+        //Happy
+        successResponse = RestAssured.given(RequestUtils.getRequestSpec(BASE_URI, PATH,Map.of("petId", PET_ID)))
+                .when().get().thenReturn();
+        foundPet = successResponse.as(Pet.class);
+        //Sad
+        notFoundResponse = RestAssured.given(RequestUtils.getRequestSpec(BASE_URI, PATH,Map.of("petId", "999999")))
+                .when().get().thenReturn();
+        //Sad
+        badRequestResponse = RestAssured.given(RequestUtils.getRequestSpec(BASE_URI, PATH,Map.of("petId", "invalidFormat")))
+                .when().get().thenReturn();
+        //Sad
+        emptyIdResponse= RestAssured.given(RequestUtils.getRequestSpec(BASE_URI, PATH,Map.of("petId", "")))
+                .when().get().thenReturn();
 
-        // Check the Content-Type to ensure it's JSON before deserialization
-        String contentType = response.getContentType();
-        if (contentType != null && contentType.contains("application/json")) {
-            pet = response.as(Pet.class);
-        } else {
-            System.err.println("Expected JSON but got: " + contentType);
-            System.err.println("Response body: " + response.getBody().asString());
-        }
     }
-
+    //Happy: Query GET pet with id: 10L
     @Test
-    @DisplayName("Get pet with a specific id and check the ID")
-    public void petIdTest() {
-        // Ensure the pet object was successfully deserialized
-        if (pet != null) {
-            MatcherAssert.assertThat(pet.id(), Matchers.is(10));
-        } else {
-            System.err.println("Test skipped due to invalid response content.");
-        }
+    @DisplayName("Test the pet has the correct ID and returns 200 status code")
+    public void petHasCorrectId(){
+        MatcherAssert.assertThat(successResponse.statusCode(), Matchers.is(200));
+        MatcherAssert.assertThat(foundPet.id(), Matchers.is(10L));
     }
-
+    //Sad: Query GET id of a pet that doesn't exist
     @Test
-    @DisplayName("Confirm pet with ID 10 is called doggie")
-    public void petIsCalledDoggie(){
-        MatcherAssert.assertThat(pet.name(), Matchers.is("doggie"));
+    void testPetNotFound() {
+        //MatcherAssert.assertThat(notFoundResponse.statusCode(), Matchers.is(404));
+        MatcherAssert.assertThat(notFoundResponse.jsonPath().getString("message"), Matchers.is("Pet not found"));
     }
-
-
+    //Sad: Query GET id that contains characters
+    @Test
+    void testInvalidPetIdReturns400() {
+        MatcherAssert.assertThat(badRequestResponse.statusCode(), Matchers.is(404));
+    }
+    //Sad: Query GET id that is empty
+    @Test
+    void testEmptyPetIdReturns405() {
+        MatcherAssert.assertThat(emptyIdResponse.statusCode(), Matchers.is(405));
+    }
 }
