@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class GetOrderByID {
         protected static final String BASE_URI = AppConfig.getBaseUri();
-    protected static final String PATH = "store/order/{orderId}";
+        protected static final String PATH = "store/order/{orderId}";
         private static Response validResponse;
         private static Response invalidResponse;
         private static Response notFoundResponse;
