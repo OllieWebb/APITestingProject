@@ -1,8 +1,9 @@
+package Pets;
+
 import config.AppConfig;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import pojo.Category;
 import pojo.Pet;
@@ -10,7 +11,6 @@ import pojo.TagsItem;
 import utils.RequestUtils;
 
 import java.util.List;
-import java.util.Map;
 
 public class PostPetById {
     private static Response response;

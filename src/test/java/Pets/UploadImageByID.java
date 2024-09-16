@@ -1,18 +1,13 @@
+package Pets;
+
 import config.AppConfig;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import utils.RequestUtils;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.Map;
 
 public class UploadImageByID {
 

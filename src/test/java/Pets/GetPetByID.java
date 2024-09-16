@@ -1,3 +1,5 @@
+package Pets;
+
 import config.AppConfig;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
