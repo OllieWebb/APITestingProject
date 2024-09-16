@@ -48,7 +48,7 @@ public class GetPetByTag {
                // Check if all pets have the correct tag
         boolean tagPresentInEveryPet = Arrays.stream(availablePets)
                 .allMatch(
-                        p -> p.tags().stream().anyMatch(t -> t.name().equals(TAG))
+                        p -> p.getTags().stream().anyMatch(t -> t.getName().equals(TAG))
                 );
         Assertions.assertTrue(tagPresentInEveryPet);
     }

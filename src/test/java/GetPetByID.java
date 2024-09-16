@@ -45,7 +45,7 @@ public class GetPetByID {
     @DisplayName("Test the pet has the correct ID and returns 200 status code")
     public void petHasCorrectId(){
         MatcherAssert.assertThat(successResponse.statusCode(), Matchers.is(200));
-        MatcherAssert.assertThat(foundPet.id(), Matchers.is(10L));
+        MatcherAssert.assertThat(foundPet.getId(), Matchers.is(10L));
     }
     //Sad: Query GET id of a pet that doesn't exist
     @Test

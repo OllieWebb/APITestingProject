@@ -50,7 +50,7 @@ public class GetPetByStatus {
     @DisplayName("Check all pets have status available")
     public void GetPetStatus_Available() {
         for (Pet pet : availablePets) {
-            MatcherAssert.assertThat(pet.status(), Matchers.is("available"));
+            MatcherAssert.assertThat(pet.getStatus(), Matchers.is("available"));
         }
     }
 
@@ -59,7 +59,7 @@ public class GetPetByStatus {
     @DisplayName("Check all pets have status pending")
     public void GetPetStatus_Pending() {
         for (Pet pet : pendingPets) {
-            MatcherAssert.assertThat(pet.status(), Matchers.is("pending"));
+            MatcherAssert.assertThat(pet.getStatus(), Matchers.is("pending"));
         }
     }
 
@@ -68,7 +68,7 @@ public class GetPetByStatus {
     @DisplayName("Check all pets have status pending")
     public void GetPetStatus_Sold() {
         for (Pet pet : soldPets) {
-            MatcherAssert.assertThat(pet.status(), Matchers.is("sold"));
+            MatcherAssert.assertThat(pet.getStatus(), Matchers.is("sold"));
         }
     }
 //NEED TO FIX
