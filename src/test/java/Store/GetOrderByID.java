@@ -21,7 +21,7 @@ public class GetOrderByID {
         private static Response notFoundResponse;
         private static Order validOrder;
 
-        private static final int ORDER_ID = 2;
+        private static final int ORDER_ID = 1;
 
 
         @BeforeAll

@@ -1,7 +1,9 @@
 package pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     public User(String firstName, String lastName, String password, int userStatus, String phone, String id, String email, String username) {}
