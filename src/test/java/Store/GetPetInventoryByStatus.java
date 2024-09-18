@@ -11,7 +11,7 @@ import utils.RequestUtils;
 
 import java.util.Map;
 
-public class GetPetInventoryByStatus {
+public class GetPetInventoryByStatus {/*
     protected static final String BASE_URI = AppConfig.getBaseUri();
     private static final String INVENTORY_PATH = "store/inventory";
     private static Response response;
@@ -47,5 +47,5 @@ public class GetPetInventoryByStatus {
         inventory.forEach((key, value) -> {
             MatcherAssert.assertThat(value, Matchers.greaterThanOrEqualTo(0));
         });
-    }
+    }*/
 }

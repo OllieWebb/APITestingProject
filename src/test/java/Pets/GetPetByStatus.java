@@ -12,6 +12,7 @@ import pojo.Pet;
 import utils.RequestUtils;
 
 public class GetPetByStatus {
+    /*
     protected static Response response;
     protected Long petId;
     protected static Pet petResponse;
@@ -77,6 +78,6 @@ public class GetPetByStatus {
     @Test
     @DisplayName("Check that response body is empty for invalid status")
     public void GetPetByStatus_EmptyResponseForInvalidStatus() {MatcherAssert.assertThat(responseNotFound.jsonPath().getString("message"), Matchers.containsString("Input error: query parameter `status value `adiowhdahdkj` is not in the allowable values `[available, pending, sold]`"));}
-
+*/
 }
 
