@@ -12,7 +12,7 @@ import utils.RequestUtils;
 
 import java.util.Map;
 
-public class GetUserById {
+public class GetUserByUsername {
     private static Response response;
     private static Response invalidResponse;
     private static User user;

@@ -4,6 +4,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import pojo.Pet;
+import pojo.User;
 
 import java.util.Map;
 
@@ -61,6 +62,23 @@ public class RequestUtils {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUri)
                 .setBasePath(path)
+                .setContentType(ContentType.JSON)
+                .setBody(body)
+                .build();
+    }
+    public static RequestSpecification userRequestSpec(String baseUri, String path, User body) {
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .setContentType(ContentType.JSON)
+                .setBody(body)
+                .build();
+    }
+    public static RequestSpecification userRequestSpec(String baseUri, String path,Map<String, String> pathParams, User body) {
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .addPathParams(pathParams)
                 .setContentType(ContentType.JSON)
                 .setBody(body)
                 .build();
