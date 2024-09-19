@@ -1,6 +1,5 @@
 package User;
 
-import com.google.gson.Gson;
 import config.AppConfig;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;

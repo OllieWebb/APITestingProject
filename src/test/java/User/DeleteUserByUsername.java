@@ -18,7 +18,6 @@ public class DeleteUserByUsername {
     private static Response response;
 
     private static User user;
-    private static User returnedUser;
 
     protected static final String BASE_URI = AppConfig.getBaseUri();
     protected static final String POST_PATH = "/user";
@@ -26,22 +25,18 @@ public class DeleteUserByUsername {
 
     @BeforeAll
     public static void setup() {
+    // Create user to delete
+            user = new User("Blah", "lastName", "password", 1, "phone", 345435345, "email@example.com", "blahBlah");
 
+            //Post Response
+            response = RestAssured
+                    .given(RequestUtils.userRequestSpec(BASE_URI, POST_PATH, user))
+                    .post()
+                    .thenReturn();
     }
     @Test
-    public void ifdf(){
-        // Create user to delete
-        user = new User("Blah", "lastName", "password", 1, "phone", 345435345, "email@example.com", "blahBlah");
-
-        // Send POST request to create user
-        response = RestAssured.given(RequestUtils.userRequestSpec(BASE_URI, POST_PATH, user)).post().thenReturn();
-        response.prettyPrint();
-
-        // Check if the user creation was successful
+    public void checkIfUserCreated(){
         MatcherAssert.assertThat(response.getStatusCode(), Matchers.is(200));
-
-        returnedUser = response.as(User.class);
-        System.out.println(returnedUser.getUsername() + " " + returnedUser.getPassword());
     }
 
     @Test
