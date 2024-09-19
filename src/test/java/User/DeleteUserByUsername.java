@@ -38,7 +38,7 @@ public class DeleteUserByUsername {
     public void checkIfUserCreated(){
         MatcherAssert.assertThat(response.getStatusCode(), Matchers.is(200));
     }
-
+//HAPPY: user sucessfully deleted with valid username
     @Test
     @Order(1)
     @DisplayName("Delete user and return 200 code")
@@ -49,5 +49,17 @@ public class DeleteUserByUsername {
                 .thenReturn();
 
         MatcherAssert.assertThat(response.getStatusCode(), Matchers.is(200));
+    }
+    //SAD: invalid username so should return 404 not found
+    @Test
+    @Order(1)
+    @DisplayName("invalid username, return 404")
+    public void deleteUserError(){
+        response = RestAssured
+                .given(RequestUtils.getRequestSpec(BASE_URI, PATH, Map.of("username", "sdfdsaff")))
+                .delete()
+                .thenReturn();
+
+        MatcherAssert.assertThat(response.getStatusCode(), Matchers.is(404));
     }
 }

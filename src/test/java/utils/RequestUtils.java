@@ -6,6 +6,7 @@ import io.restassured.specification.RequestSpecification;
 import pojo.Pet;
 import pojo.User;
 
+import java.util.List;
 import java.util.Map;
 
 public class RequestUtils {
@@ -53,6 +54,14 @@ public class RequestUtils {
                 .setBasePath(path)
                 .addHeaders(headers)
                 .addPathParams(pathParams)
+                .setContentType(ContentType.JSON)
+                .setBody(body)
+                .build();
+    }
+    public static RequestSpecification postRequestSpecList(String baseUri, String path, List<User> body) {
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
                 .setContentType(ContentType.JSON)
                 .setBody(body)
                 .build();
