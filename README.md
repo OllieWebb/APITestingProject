@@ -16,6 +16,16 @@ base.uri=https://petstore.swagger.io/v2
 iii. Save an image of a dog in the same resources folder and save it as "DogImage.jpeg" - to test the image upload functionality on the API
 
 ##Using the Framework
-src ├── main │ ├── java │ │ ├── config # Configuration classes and settings │ │ ├── Pets # Pet-related functionalities and business logic │ │ ├── pojo # Plain Old Java Objects (data models) │ │ ├── Store # Store operations like inventory and orders │ │ ├── User # User management and profiles │ │ └── utils # Utility classes and helper functions │ └── resources │ ├── config.properties # Application configuration settings │ └── DogImage.jpeg # Sample image for testing/demo ├── test # Test classes for the application's functionalities └── target # Build output (generated, not version-controlled)
-
+src 
+├── main 
+│ ├── java 
+│ │ ├── config 
+│ │ ├── Pets 
+│ │ ├── pojo 
+│ │ ├── Store 
+│ │ ├── User 
+│ │ └── utils 
+│ └── resources 
+│ ├── config.properties 
+│ └── DogImage.jpeg 
 
